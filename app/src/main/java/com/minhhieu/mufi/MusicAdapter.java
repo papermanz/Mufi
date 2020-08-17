@@ -28,7 +28,7 @@ import java.util.ArrayList;
 class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyVieHolder> {
 
     private Context mContext;
-    private ArrayList<MusicFiles> mFiles;
+    static ArrayList<MusicFiles> mFiles;
 
     MusicAdapter(Context mContext,ArrayList<MusicFiles> mFiles){
     this.mFiles = mFiles;
@@ -135,4 +135,11 @@ class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyVieHolder> {
         retriever.release();
         return art;
     }
+    void updateList(ArrayList<MusicFiles> musicFilesArrayList)
+    {
+        mFiles = new ArrayList<>();
+        mFiles.addAll(musicFilesArrayList);
+        notifyDataSetChanged();
+    }
+
 }

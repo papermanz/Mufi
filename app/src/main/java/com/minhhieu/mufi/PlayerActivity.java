@@ -26,6 +26,7 @@ import static com.minhhieu.mufi.AlbumDetailsAdapter.albumFiles;
 import static com.minhhieu.mufi.MenuActivity.musicFiles;
 import static com.minhhieu.mufi.MenuActivity.repeatBoolean;
 import static com.minhhieu.mufi.MenuActivity.shuffleBoolean;
+import static com.minhhieu.mufi.MusicAdapter.mFiles;
 
 public class PlayerActivity extends AppCompatActivity implements MediaPlayer.OnCompletionListener{
     TextView song_name, artist_name, duration_player, duration_total;
@@ -38,6 +39,7 @@ public class PlayerActivity extends AppCompatActivity implements MediaPlayer.OnC
     static MediaPlayer mediaPlayer;
     private Handler handler = new Handler();
     private Thread playThread, prevThread, nextThread;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -383,7 +385,7 @@ public class PlayerActivity extends AppCompatActivity implements MediaPlayer.OnC
         }
         else
         {
-            listSongs = musicFiles;
+            listSongs = mFiles;
         }
         if(listSongs != null){
             PlaypauseBtn.setImageResource(R.drawable.ic_pause);
