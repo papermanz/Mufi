@@ -1,12 +1,18 @@
 package com.minhhieu.mufi;
 
+import android.media.MediaMetadataRetriever;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import static com.minhhieu.mufi.MenuActivity.musicFiles;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +20,8 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class AlbumFragment extends Fragment {
+    RecyclerView recyclerView;
+    AlbumAdapter albumAdapter;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -60,6 +68,17 @@ public class AlbumFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_album, container, false);
+        recyclerView = view.findViewById(R.id.recycleView);
+        recyclerView.setHasFixedSize(true);
+        if(!(musicFiles.size() < 1 ))
+        {
+            albumAdapter = new AlbumAdapter(getContext(), musicFiles);
+            recyclerView.setAdapter(albumAdapter);
+            recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
+        }
         return view;
     }
+
+
+
 }
