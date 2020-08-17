@@ -22,6 +22,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static com.minhhieu.mufi.AlbumDetailsAdapter.albumFiles;
 import static com.minhhieu.mufi.MenuActivity.musicFiles;
 import static com.minhhieu.mufi.MenuActivity.repeatBoolean;
 import static com.minhhieu.mufi.MenuActivity.shuffleBoolean;
@@ -75,7 +76,7 @@ public class PlayerActivity extends AppCompatActivity implements MediaPlayer.OnC
                     seekBar.setProgress(mCurrentPosition);
                     duration_player.setText(formattedTime(mCurrentPosition));
                 }
-                handler.postDelayed(this,1000); // khắc phục lỗi chậm chễ khi vuốt seekbar
+                handler.postDelayed(this,1000); // khắc phục lỗi chậm trễ khi vuốt seekbar
             }
         });
             ShuffleBtn.setOnClickListener(new View.OnClickListener() {
@@ -375,7 +376,15 @@ public class PlayerActivity extends AppCompatActivity implements MediaPlayer.OnC
 
     private void getIntentMethod() {
         position = getIntent().getIntExtra("position",-1);
-        listSongs = musicFiles;
+        String sender = getIntent().getStringExtra("sender");
+        if(sender != null && sender.equals("albumDetails"))
+        {
+            listSongs = albumFiles;
+        }
+        else
+        {
+            listSongs = musicFiles;
+        }
         if(listSongs != null){
             PlaypauseBtn.setImageResource(R.drawable.ic_pause);
             uri = Uri.parse(listSongs.get(position).getPath());
@@ -408,7 +417,7 @@ public class PlayerActivity extends AppCompatActivity implements MediaPlayer.OnC
         repeatBtn = (ImageView) findViewById(R.id.buttonRepeat);
         PlaypauseBtn = (FloatingActionButton) findViewById(R.id.butonPlay);
         seekBar = (SeekBar) findViewById(R.id.playerSeekBar);
-        backBtn = (ImageView) findViewById(R.id.btn_back);
+        //backBtn = (ImageView) findViewById(R.id.btn_back);
         
     }
     // xử lí thời lượng bài hát, cover_art trong playerActivity
