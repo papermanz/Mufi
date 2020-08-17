@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/mContainer"
     android:background="@color/colorhomebackground"
     tools:context=".PlayerActivity">
 
@@ -138,20 +139,7 @@
             app:layout_constraintBottom_toTopOf="@id/imageLyics"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-        <!--
-        <ImageView
-            android:id="@+id/butonPause"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginBottom="30dp"
-            android:background="@drawable/ic_pause"
-            android:contentDescription="@string/app_name"
-            android:padding="12dp"
-            android:src="@drawable/ic_play"
-            app:layout_constraintBottom_toTopOf="@id/imageLyics"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-            -->
+
 
         <ImageView
             android:id="@+id/btn_pre"
@@ -186,7 +174,7 @@
             android:layout_marginStart="20dp"
             android:background="@null"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/ic_shuffle"
+            android:src="@drawable/ic_shuffle_off"
             app:layout_constraintBottom_toBottomOf="@id/butonPlay"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/butonPlay" />
@@ -198,7 +186,7 @@
             android:layout_marginEnd="20dp"
             android:background="@null"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/ic_repeat"
+            android:src="@drawable/ic_repeat_off"
             app:layout_constraintBottom_toBottomOf="@id/butonPlay"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/butonPlay" />

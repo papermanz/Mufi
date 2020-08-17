@@ -19,8 +19,18 @@
         android:text="File Name"
         android:layout_toEndOf="@+id/music_img"
         android:layout_marginStart="10dp"
+        android:layout_toStartOf="@+id/menuMore"
         android:layout_centerVertical="true"
         android:textColor="@color/colorprimarytext"
         android:id="@+id/music_file_name"/>
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/menuMore"
+        android:background="@drawable/ic_more"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:padding="10dp"/>
 
 </RelativeLayout>
