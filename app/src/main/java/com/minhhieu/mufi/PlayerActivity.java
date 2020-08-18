@@ -3,6 +3,7 @@ package com.minhhieu.mufi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
@@ -12,6 +13,7 @@ import android.os.Handler;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -33,6 +35,7 @@ public class PlayerActivity extends AppCompatActivity implements MediaPlayer.OnC
     ImageView cover_art, nextBtn, prevBtn, backBtn, ShuffleBtn, repeatBtn;
     FloatingActionButton PlaypauseBtn;
     SeekBar seekBar;
+    Button btnLearn;
     int position = -1;
     static ArrayList<MusicFiles> listSongs = new ArrayList<>();
     static Uri uri;
@@ -50,6 +53,13 @@ public class PlayerActivity extends AppCompatActivity implements MediaPlayer.OnC
         song_name.setText(listSongs.get(position).getTitle());
         artist_name.setText(listSongs.get(position).getArtist());
         mediaPlayer.setOnCompletionListener(this);
+        btnLearn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PlayerActivity.this, LearnActivity.class);
+                startActivity(intent);
+            }
+        });
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -420,6 +430,7 @@ public class PlayerActivity extends AppCompatActivity implements MediaPlayer.OnC
         PlaypauseBtn = (FloatingActionButton) findViewById(R.id.butonPlay);
         seekBar = (SeekBar) findViewById(R.id.playerSeekBar);
         //backBtn = (ImageView) findViewById(R.id.btn_back);
+        btnLearn = (Button)findViewById(R.id.btn_learn);
         
     }
     // xử lí thời lượng bài hát, cover_art trong playerActivity

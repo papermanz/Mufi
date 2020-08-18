@@ -132,10 +132,11 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginBottom="30dp"
-            android:background="@drawable/play_button_background"
             android:contentDescription="@string/app_name"
             android:padding="12dp"
             android:src="@drawable/ic_play"
+            android:focusable="true"
+            android:clickable="true"
             app:layout_constraintBottom_toTopOf="@id/imageLyics"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -236,8 +237,8 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
-        android:id="@+id/bn_learn"
-        android:text="Lean &amp; Exercise"
+        android:id="@+id/btn_learn"
+        android:text="Learn &amp; Exercise"
         android:layout_width="wrap_content"
         android:textColor="@color/colorprimarytext"
         android:background="@color/colorhomebackground"
