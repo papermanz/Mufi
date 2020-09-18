@@ -16,7 +16,7 @@
         android:background="@color/cardview_dark_background"
         app:tabTextColor="@color/colorprimarytext"
         app:tabIndicatorHeight="40dp"
-        app:tabIndicatorColor="#0f4c75"
+        app:tabIndicatorColor="@color/colorPrimary"
         app:tabIndicatorGravity="center"/>
 
     <androidx.viewpager.widget.ViewPager

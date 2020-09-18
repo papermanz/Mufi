@@ -125,6 +125,7 @@ public class MenuActivity extends AppCompatActivity implements SearchView.OnQuer
         String sortOder =  preferences.getString("sorting","sortByName");
         ArrayList<String> duplicate = new ArrayList<>();
         ArrayList<MusicFiles> tempAudioList = new ArrayList<>();
+        albums.clear();
         String Order = null;
         Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
         switch (sortOder)

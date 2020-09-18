@@ -2,12 +2,15 @@ package com.minhhieu.mufi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -22,6 +25,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import static com.minhhieu.mufi.AlbumDetailsAdapter.albumFiles;
@@ -36,6 +40,9 @@ public class PlayerActivity extends AppCompatActivity implements MediaPlayer.OnC
     FloatingActionButton PlaypauseBtn;
     SeekBar seekBar;
     Button btnLearn;
+
+
+
     int position = -1;
     static ArrayList<MusicFiles> listSongs = new ArrayList<>();
     static Uri uri;
@@ -53,10 +60,14 @@ public class PlayerActivity extends AppCompatActivity implements MediaPlayer.OnC
         song_name.setText(listSongs.get(position).getTitle());
         artist_name.setText(listSongs.get(position).getArtist());
         mediaPlayer.setOnCompletionListener(this);
+
+
+// activity learn
         btnLearn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PlayerActivity.this, LearnActivity.class);
+
                 startActivity(intent);
             }
         });
@@ -125,6 +136,7 @@ public class PlayerActivity extends AppCompatActivity implements MediaPlayer.OnC
 
     }
 
+
     @Override
     protected void onResume() {
         playThreadBtn();
@@ -143,6 +155,7 @@ public class PlayerActivity extends AppCompatActivity implements MediaPlayer.OnC
                     @Override
                     public void onClick(View v) {
                         prevBtnCliked();
+
                     }
                 });
             }
@@ -413,8 +426,6 @@ public class PlayerActivity extends AppCompatActivity implements MediaPlayer.OnC
         }
         seekBar.setMax(mediaPlayer.getDuration() / 1000);
         metaData(uri);
-
-
     }
 
     private void initView() {
@@ -508,4 +519,5 @@ public class PlayerActivity extends AppCompatActivity implements MediaPlayer.OnC
             mediaPlayer.setOnCompletionListener(this);
         }
     }
+
 }

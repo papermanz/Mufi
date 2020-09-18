@@ -1,0 +1,34 @@
+package com.minhhieu.mufi;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.TextView;
+
+import Data.Word;
+
+public class TranslateActivity extends AppCompatActivity {
+        TextView txtketqua;
+
+    private static final String KEY_WORD = "KEY_WORD";
+
+    public static Intent newIntent(Context context, Word item){
+        Intent intent = new Intent(context, TranslateActivity.class);
+        intent.putExtra(KEY_WORD, item);
+        return intent;
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_translate);
+        txtketqua = (TextView) findViewById(R.id.txtketqua);
+        Word item = (Word) getIntent().getSerializableExtra(KEY_WORD);
+        txtketqua.setText(item.getEng()+"\n" +item.getVie());
+
+        //Log.e("TranslateActivity", "Word item: " + item.getEng());
+    }
+}
