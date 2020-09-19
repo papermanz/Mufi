@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:padding="10dp"
+    android:background="#ffaa71"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:padding="10dp"
+        android:id="@+id/txtAdd"
+        android:textColor="#6e6d6d"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:text="Thêm từ mới"
+        android:textSize="30sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:hint="Nhập từ mới"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/txtAdd"
+        android:id="@+id/edt_eng"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:hint="Nhập nghĩa của từ"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/edt_eng"
+        android:id="@+id/edt_vie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/edt_vie"
+        android:id="@+id/btn_add"
+        android:text="Thêm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:layout_toRightOf="@+id/btn_add"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/edt_vie"
+        android:id="@+id/btn_cancel"
+        android:text="Huỷ"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+</RelativeLayout>

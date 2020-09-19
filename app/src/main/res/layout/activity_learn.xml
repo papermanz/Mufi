@@ -8,65 +8,94 @@
     tools:context=".LearnActivity">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        >
         <TextView
-            android:layout_width="match_parent"
+            android:layout_marginTop="6dp"
+            android:layout_marginStart="6dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Từ cần học ngày hôm nay"
-            android:textStyle="bold" />
+            android:text="@string/learn"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            />
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="33dp"
             android:layout_gravity="end"
-            android:text="New List"
-            android:paddingStart="200dp"
-            android:textColor="@color/colorPrimary" />
+            android:layout_marginTop="6dp"
+            android:gravity="center"
+            android:paddingStart="150dp"
+            android:text="@string/new_list"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"
+            tools:ignore="RtlSymmetry" />
+
     </LinearLayout>
 
     <ListView
-        android:paddingTop="20dp"
         android:id="@+id/lvhienthi"
         android:layout_width="match_parent"
-        android:layout_height="239dp" />
+        android:layout_height="200dp" />
     <TextView
         android:layout_width="match_parent"
+        android:layout_marginStart="6dp"
         android:layout_height="wrap_content"
-        android:text="Các bài tập ngày hôm nay"
-        android:textStyle="bold"/>
+        android:text="@string/exercise"
+        android:textStyle="bold"
+        android:textSize="16sp"/>
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Push up 10"/>
+        android:layout_width="81dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="20dp"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:text="@string/push_up_10"/>
 
     <ImageView
-        android:layout_width="match_parent"
+        android:layout_width="314dp"
         android:layout_height="115dp"
         android:background="#FFFFFF"
-        app:srcCompat="@drawable/pushup" />
+        app:srcCompat="@drawable/pushup"
+        android:layout_gravity="center"
+        android:contentDescription="@string/push_up_10" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Situp 10"/>
+        android:layout_width="62dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="20dp"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:text="@string/situp_10"/>
 
     <ImageView
-        android:layout_width="match_parent"
+        android:layout_width="314dp"
         android:layout_height="115dp"
         android:background="#FFFFFF"
-        app:srcCompat="@drawable/situp" />
+        app:srcCompat="@drawable/situp"
+        android:layout_gravity="center"
+        android:contentDescription="@string/situp_10"/>
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Glute bridge 10"/>
+        android:layout_width="121dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="20dp"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:text="@string/glute_bridge_10"
+        android:layout_marginTop="10dp"/>
 
     <ImageView
-        android:layout_width="match_parent"
+        android:layout_width="314dp"
         android:layout_height="115dp"
         android:background="#FFFFFF"
-        app:srcCompat="@drawable/glutebridge" />
-    
+        app:srcCompat="@drawable/glutebridge"
+        android:layout_gravity="center"
+        android:contentDescription="@string/glute_bridge_10"/>
+
 </LinearLayout>

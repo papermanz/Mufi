@@ -3,4 +3,13 @@
     <string name="lyrics">Lyrics</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tutienganh">Từ Tiếng Anh</string>
+    <string name="tutiengviet">Từ tiếng việt</string>
+    <string name="todo">TODO</string>
+    <string name="learn">Từ cần học ngày hôm nay</string>
+    <string name="new_list">New List</string>
+    <string name="exercise">Các bài tập ngày hôm nay</string>
+    <string name="push_up_10">Push up 10</string>
+    <string name="situp_10">Situp 10</string>
+    <string name="glute_bridge_10">Glute bridge 10</string>
 </resources>
