@@ -3,6 +3,7 @@
     package="com.minhhieu.mufi">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TranslateActivity"></activity>
+        <activity android:name=".ImageActivity"></activity>
+        <activity android:name=".ExerciseActivity" />
+        <activity android:name=".TranslateActivity" />
         <activity android:name=".LearnActivity" />
         <activity android:name=".AlbumDetails" />
         <activity android:name=".PlayerActivity" />

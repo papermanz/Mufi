@@ -3,11 +3,12 @@ package com.minhhieu.mufi;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,21 +17,31 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import Data.Database;
+import Data.Exercise;
+import Data.ExerciseAdapter;
 import Data.Word;
 import Data.WordAdapter;
 
 public class LearnActivity extends AppCompatActivity {
 
+
+
     ListView lvhienthi;
-    Database database;
+    ListView lvexercise;
+    public static Database database;
     ArrayList<Word> arrayWord;
+    ArrayList<Exercise> arrayImage;
     WordAdapter adapter;
+   ExerciseAdapter eadapter;
+   TextView tvaddimage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,17 +52,29 @@ public class LearnActivity extends AppCompatActivity {
         adapter = new WordAdapter(this, R.layout.word_eng, arrayWord);
         lvhienthi.setAdapter(adapter);
 
+
+        eadapter = new ExerciseAdapter(this, R.layout.image_title,arrayImage);
+        lvexercise.setAdapter(eadapter);
+
+
         //tạo database Word
         database = new Database(this, "Learn.sqlite", null, 1);
 
-        //tạo bảng công việc
+        //tạo bảng công việc translate
         database.QueryData("CREATE TABLE IF NOT EXISTS Word(Id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 " Eng VARCHAR(200), Vie VARCHAR(200))");
 
-        //Thêm dữ liệu
-        //database.QueryData("INSERT INTO Word VALUES (null, 'Hello','xin chào')");
+       //tạo bảng công việc excercise
+     database.QueryData("CREATE TABLE IF NOT EXISTS Image(Id INTEGER PRIMARY KEY AUTOINCREMENT," +
+           " Title VARCHAR(200), ImageTitle BLOB, Gif VARCHAR(200))");
+
+
+     //database.QueryData("INSERT INTO Image VALUES (null, 'pushup 10','pushup','a')");
+
+
 
         GetDataWord();
+        GetDataImage();
         lvhienthi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -59,8 +82,27 @@ public class LearnActivity extends AppCompatActivity {
                 startActivity(TranslateActivity.newIntent(LearnActivity.this, item));
             }
         });
-    }
 
+        lvexercise.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Exercise item1 = (Exercise) eadapter.getItem(position);
+                startActivity(ExerciseActivity.newIntent1(LearnActivity.this,item1));
+//                Intent intent = new Intent(LearnActivity.this,ExerciseActivity.class);
+//                startActivity(intent);
+            }
+        });
+
+        tvaddimage = (TextView) findViewById(R.id.addimage);
+        tvaddimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LearnActivity.this,ImageActivity.class);
+                startActivity(intent);
+            }
+        });
+
+    }
     public void DialogDeleteWord(final String tencv, final int Id){
         AlertDialog.Builder dialogdelete = new AlertDialog.Builder(this);
         dialogdelete.setMessage("Bạn có muốn xoá từ "+ tencv+ " không ?");
@@ -83,7 +125,6 @@ public class LearnActivity extends AppCompatActivity {
 
 
 
-
     private void GetDataWord(){
         //select Data( đọc dữ liệu)
         Cursor dataWords = database.GetData("SElECT * FROM Word");
@@ -98,10 +139,31 @@ public class LearnActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
+    private void GetDataImage(){
+        Cursor dataImage = database.GetData("SELECT * FROM Image ");
+        arrayImage.clear();
+        while (dataImage.moveToNext()){
+            String Gif = dataImage.getString(3);
+            byte[] imageTitle = dataImage.getBlob(2);
+            String title = dataImage.getString(1);
+            int idImage = dataImage.getInt(0);
+            arrayImage.add(new Exercise(idImage,title,imageTitle,Gif));
+        }
+        eadapter.notifyDataSetChanged();
+    }
+
+
    private void initViewPager (){
        lvhienthi = findViewById(R.id.lvhienthi);
+       lvexercise = findViewById(R.id.lvexercise);
+       arrayImage = new ArrayList<>();
+//       arrayImage.add(new Exercise(1,"Pushup 10",R.drawable.pushup,R.drawable.a));
+//       arrayImage.add(new Exercise(2,"situp 10",R.drawable.situp,R.drawable.b));
+//       arrayImage.add(new Exercise(3,"glutebridge 10",R.drawable.glutebridge,R.drawable.a));
+//       arrayImage.add(new Exercise(4,"glutebridge 10",R.drawable.glutebridge,R.drawable.a));
 
-    }
+
+   }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

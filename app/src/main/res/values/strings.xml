@@ -12,4 +12,7 @@
     <string name="push_up_10">Push up 10</string>
     <string name="situp_10">Situp 10</string>
     <string name="glute_bridge_10">Glute bridge 10</string>
+    <string name="add_exercise">Add Exercise</string>
+
+
 </resources>

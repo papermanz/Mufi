@@ -51,7 +51,6 @@ public class WordAdapter extends BaseAdapter {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(layout, null);
             holder.txtWordE = (TextView) view.findViewById(R.id.tvword1);
-
             view.setTag(holder);
         }else{
             holder = (ViewHolder) view.getTag();
