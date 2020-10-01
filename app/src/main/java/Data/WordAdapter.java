@@ -60,7 +60,7 @@ public class WordAdapter extends BaseAdapter {
         holder.txtWordE.setText(word1.getEng());
 
 
-        // bắt sự kiện xoá
+        // bắt sự kiện xoá từ mới
 
         holder.txtWordE.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -69,6 +69,8 @@ public class WordAdapter extends BaseAdapter {
                 return false;
             }
         });
+
+
 
         return view;
     }

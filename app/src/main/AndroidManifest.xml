@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ImageActivity"></activity>
+        <activity android:name=".ImageActivity" />
         <activity android:name=".ExerciseActivity" />
         <activity android:name=".TranslateActivity" />
         <activity android:name=".LearnActivity" />

@@ -78,8 +78,15 @@ public class ExerciseAdapter extends BaseAdapter {
         holder.imageTitle.setImageBitmap(bitmap);
 
 
+        // bắt sự kiện xoá bài tập
 
-
+        holder.txtTitle.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                context.DialogDeleteExercise(exercise.getIdImage(),exercise.getTitle(),exercise.getImageTitle());
+                return false;
+            }
+        });
 
         return convertView;
     }

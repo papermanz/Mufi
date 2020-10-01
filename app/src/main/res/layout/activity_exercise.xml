@@ -1,19 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ExerciseActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/save_exercise"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/xanh"
+            android:text="@string/save"
+            android:textColor="@color/colorprimarytext"
+            app:layout_constraintEnd_toEndOf="@+id/id_entry"
+            app:layout_constraintHorizontal_bias="1.0"
+            android:layout_marginVertical="30dp"
+            app:layout_constraintStart_toStartOf="@+id/entry"
+            app:layout_constraintTop_toBottomOf="@+id/entry" />
+
+        <TextView
+        android:id="@+id/title_exercise"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/imagegif"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/imagegif"
         android:layout_width="match_parent"
-        android:layout_height="314dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title_exercise"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_exercise"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        app:layout_constraintBottom_toTopOf="@+id/linechart"
+        android:layout_marginTop="47dp"
+        android:contentDescription="@string/imageExercise"/>
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/linechart"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="68dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imagegif"
+        app:layout_constraintBottom_toTopOf="@+id/recommended"/>
+
+        <TextView
+            android:id="@+id/recommended"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="24dp"
+            android:text="@string/recommended"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/entry"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.254"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linechart" />
+
+        <TextView
+        android:id="@+id/id_recommended"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="24dp"
+        android:text="@string/_10"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/recommended"
+        app:layout_constraintTop_toBottomOf="@+id/linechart"
+        app:layout_constraintEnd_toEndOf="parent"/>
+    <TextView
+        android:id="@+id/entry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="24dp"
+        android:text="@string/entry"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/recommended"
+        app:layout_constraintStart_toStartOf="@+id/recommended"
+        app:layout_constraintBottom_toTopOf="@+id/save_exercise"/>
+    <EditText
+        android:id="@+id/id_entry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:inputType="number"
+        app:layout_constraintTop_toBottomOf="@+id/id_recommended"
+        app:layout_constraintStart_toStartOf="@+id/id_recommended"
         />
 
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 
 
-</RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

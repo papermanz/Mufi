@@ -40,8 +40,8 @@ public class LearnActivity extends AppCompatActivity {
     ArrayList<Word> arrayWord;
     ArrayList<Exercise> arrayImage;
     WordAdapter adapter;
-   ExerciseAdapter eadapter;
-   TextView tvaddimage;
+    ExerciseAdapter eadapter;
+    TextView tvaddimage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,11 +68,6 @@ public class LearnActivity extends AppCompatActivity {
      database.QueryData("CREATE TABLE IF NOT EXISTS Image(Id INTEGER PRIMARY KEY AUTOINCREMENT," +
            " Title VARCHAR(200), ImageTitle BLOB, Gif VARCHAR(200))");
 
-
-     //database.QueryData("INSERT INTO Image VALUES (null, 'pushup 10','pushup','a')");
-
-
-
         GetDataWord();
         GetDataImage();
         lvhienthi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -86,10 +81,9 @@ public class LearnActivity extends AppCompatActivity {
         lvexercise.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Exercise item1 = (Exercise) eadapter.getItem(position);
-                startActivity(ExerciseActivity.newIntent1(LearnActivity.this,item1));
-//                Intent intent = new Intent(LearnActivity.this,ExerciseActivity.class);
-//                startActivity(intent);
+                Exercise itemExercise = (Exercise) eadapter.getItem(position);
+                startActivity(ExerciseActivity.newIntentExercise(LearnActivity.this,itemExercise));
+
             }
         });
 
@@ -101,8 +95,9 @@ public class LearnActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
+
+    //Dialog xoá từ mới
     public void DialogDeleteWord(final String tencv, final int Id){
         AlertDialog.Builder dialogdelete = new AlertDialog.Builder(this);
         dialogdelete.setMessage("Bạn có muốn xoá từ "+ tencv+ " không ?");
@@ -139,6 +134,7 @@ public class LearnActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
+    //select Data( đọc dữ liệu hình ảnh)
     private void GetDataImage(){
         Cursor dataImage = database.GetData("SELECT * FROM Image ");
         arrayImage.clear();
@@ -157,12 +153,6 @@ public class LearnActivity extends AppCompatActivity {
        lvhienthi = findViewById(R.id.lvhienthi);
        lvexercise = findViewById(R.id.lvexercise);
        arrayImage = new ArrayList<>();
-//       arrayImage.add(new Exercise(1,"Pushup 10",R.drawable.pushup,R.drawable.a));
-//       arrayImage.add(new Exercise(2,"situp 10",R.drawable.situp,R.drawable.b));
-//       arrayImage.add(new Exercise(3,"glutebridge 10",R.drawable.glutebridge,R.drawable.a));
-//       arrayImage.add(new Exercise(4,"glutebridge 10",R.drawable.glutebridge,R.drawable.a));
-
-
    }
 
     @Override
@@ -178,6 +168,8 @@ public class LearnActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    //Dialog add từ mới
     private void DialogAdd(){
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -215,4 +207,29 @@ public class LearnActivity extends AppCompatActivity {
         });
         dialog.show();
     }
+
+
+    //Dialog xoá bài tập thể hình
+
+    public void DialogDeleteExercise(final int idImage, final String title, byte[] imageTitle) {
+        AlertDialog.Builder dialogdeleteExercise = new AlertDialog.Builder(this);
+        dialogdeleteExercise.setMessage("Bạn có muốn xoá bài tập "+ title + " không ?");
+        dialogdeleteExercise.setPositiveButton("có", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                database.QueryData("DELETE FROM Image WHERE ID = '"+idImage +"'");
+                Toast.makeText(LearnActivity.this, "Đã xoá bài tập "+ title +" thành công !", Toast.LENGTH_SHORT).show();
+                GetDataImage();
+            }
+        });
+        dialogdeleteExercise.setNegativeButton("không", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        dialogdeleteExercise.show();
+    }
+
 }
