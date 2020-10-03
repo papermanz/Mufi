@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:title="@string/load"
+    <item android:title="Load"
         android:id="@+id/menuAdd"
         android:icon="@android:drawable/ic_popup_sync"
-        app:showAsAction="always"
-         />
+        android:iconTint="@color/camnhatvua"
+        app:showAsAction="always"/>
 
 
 </menu>

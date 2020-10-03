@@ -42,6 +42,7 @@ public class LearnActivity extends AppCompatActivity {
     WordAdapter adapter;
     ExerciseAdapter eadapter;
     TextView tvaddimage;
+    TextView addWord;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,6 +94,12 @@ public class LearnActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(LearnActivity.this,ImageActivity.class);
                 startActivity(intent);
+            }
+        });
+        addWord.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogAdd();
             }
         });
     }
@@ -153,6 +160,7 @@ public class LearnActivity extends AppCompatActivity {
        lvhienthi = findViewById(R.id.lvhienthi);
        lvexercise = findViewById(R.id.lvexercise);
        arrayImage = new ArrayList<>();
+       addWord = (TextView) findViewById(R.id.addword);
    }
 
     @Override
@@ -164,7 +172,7 @@ public class LearnActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.menuAdd){
-            DialogAdd();
+
         }
         return super.onOptionsItemSelected(item);
     }

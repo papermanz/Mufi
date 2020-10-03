@@ -110,6 +110,7 @@
     <string name="recommended">Recommended:</string>
     <string name="save">Save</string>
     <string name="load">Load</string>
+    <string name="add_word">Add Word</string>
 
 
 </resources>

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -70,13 +71,9 @@ public class ExerciseActivity extends AppCompatActivity{
     LineChart LineChart;
     Button SaveExercise;
     Database database;
-
-   // SQLiteDatabase sqLiteDatabase;
-   // LineDataSet lineDataSet = new LineDataSet(null, null);
-    //ArrayList<ILineDataSet>dataSets = new ArrayList<>();
-    //LineData lineData;
     long date = System.currentTimeMillis();
-
+    SharedPreferences saveDecommended;
+    int TotalDecommended = 10;
 
 
 
@@ -112,48 +109,19 @@ public class ExerciseActivity extends AppCompatActivity{
         database.QueryData("CREATE TABLE IF NOT EXISTS Time(Id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 " yAXIS STRING, DATE STRING)");
 
+        //Create Preferences
+        saveDecommended = getSharedPreferences("Decommended", MODE_PRIVATE);
         addDataToGraph();
         LoadChart();
 
+        //get Decommended
+        TotalDecommended = saveDecommended.getInt("Decommended",10);
+        IdRecommended.setText(TotalDecommended+"");
 
 
 
-      //  SaveTime();
-//        sqLiteDatabase = database.getWritableDatabase();
-
-
-       // ShowChart();
-
-
-
-
-//        LineChart.setScaleEnabled(false);
-//        LineDataSet set1 = new LineDataSet(DataValues1(),"Số lần tập");
-//        set1.setFillAlpha(110);
-//        set1.setColor(Color.RED);
-//        set1.setLineWidth(2f);
-//        ArrayList<ILineDataSet> dataSets = new ArrayList<>();
-//
-//        XAxis xAxis = LineChart.getXAxis();
-//        YAxis yAxisLeft = LineChart.getAxisLeft();
-//        YAxis yAxisRight = LineChart.getAxisRight();
-//        xAxis.setValueFormatter(new DayValueFormatter());
-//        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-//        xAxis.setDrawGridLines(true);
-//        xAxis.setLabelCount(5);
-//        xAxis.setGranularity(1f);
-//        xAxis.setGranularityEnabled(true);
-//
-//
-//
-//        dataSets.add(set1);
-//
-//
-//        LineData data = new LineData(dataSets);
-//        LineChart.setData(data);
-//        LineChart.invalidate();
-//
     }
+
 
     private void LoadChart(){
 
@@ -174,6 +142,12 @@ public class ExerciseActivity extends AppCompatActivity{
         String yvalue = IdEntry.getText().toString().trim();
         database.SaveExercise(xvalue,yvalue);
         addDataToGraph();
+        int Entry = Integer.parseInt(IdEntry.getText().toString());
+        if(Entry>TotalDecommended){
+            TotalDecommended = Entry + 5;
+        }
+        IdRecommended.setText(TotalDecommended+"");
+        SavePreferences();
         database.close();
 
     }
@@ -208,79 +182,8 @@ public class ExerciseActivity extends AppCompatActivity{
         LineChart.setMaxVisibleValueCount(5);
         LineChart.invalidate();
 
+
     }
-
-//
-//    private void ShowChart() {
-//        LoadExercise.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                lineDataSet.setValues(getDataValues());
-//                lineDataSet.setLabel("số lần tập");
-//                dataSets.clear();
-//                dataSets.add(lineDataSet);
-//                lineData = new LineData(dataSets);
-//                LineChart.clear();
-//                LineChart.setData(lineData);
-//                LineChart.invalidate();
-//            }
-//        });
-//
-//    }
-//
-//    private ArrayList<Entry>getDataValues(){
-//        ArrayList<Entry> dataVals = new ArrayList<>();
-//        String[] columns = {"xValues","yValues"};
-//        Cursor cursor = sqLiteDatabase.query("Time",columns,null,null,null,null,null);
-//        for(int i = 0;i<cursor.getCount();i++)
-//        {
-//            cursor.moveToNext();
-//            dataVals.add(new Entry(cursor.getFloat(0),cursor.getFloat(1)));
-//
-//        }
-//        return dataVals;
-//
-//    }
-
-
-    
-//    private void SaveTime() {
-//        Calendar calendar = Calendar.getInstance();
-//
-//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
-//        final String dateTime = simpleDateFormat.format(calendar.getTime());
-//
-//        SaveExercise.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                    String xVal = dateTime;
-//                    float yVal = Float.parseFloat(String.valueOf(IdEntry.getText()));
-//                database.QueryData("INSERT INTO Time VALUES (null, '" + yVal + "','" + xVal + "')");
-//            }
-//        });
-//    }
-
-
-//    private ArrayList<Entry> DataValues1(){
-//        ArrayList<Entry> yValues = new ArrayList<>();
-//        yValues.add(new Entry(1,60f));
-//        yValues.add(new Entry(2,50f));
-//        yValues.add(new Entry(3,70f));
-//        yValues.add(new Entry(4,65f));
-//        yValues.add(new Entry(5,30f));
-//        return yValues;
-//    }
-
-
-
-
-//    public class DayValueFormatter extends ValueFormatter{
-//        public DayValueFormatter(){
-//        }
-//        public String getFormattedValue(float value){
-//            return ((int)value)+"day";
-//        }
-//    }
 
     private void initView() {
         gif = (ImageView) findViewById(R.id.imagegif);
@@ -289,6 +192,11 @@ public class ExerciseActivity extends AppCompatActivity{
         IdRecommended = (TextView) findViewById(R.id.id_recommended);
         IdEntry = (EditText) findViewById(R.id.id_entry);
         SaveExercise = (Button) findViewById(R.id.save_exercise);
+    }
+    private void SavePreferences(){
+        SharedPreferences.Editor editor = saveDecommended.edit();
+        editor.putInt("Decommended",TotalDecommended);
+        editor.commit();
     }
 
 
