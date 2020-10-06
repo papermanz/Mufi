@@ -18,11 +18,14 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Random;
 
 import Data.Database;
 import Data.Exercise;
@@ -31,8 +34,6 @@ import Data.Word;
 import Data.WordAdapter;
 
 public class LearnActivity extends AppCompatActivity {
-
-
 
     ListView lvhienthi;
     ListView lvexercise;
@@ -125,7 +126,19 @@ public class LearnActivity extends AppCompatActivity {
         dialogdelete.show();
     }
 
+    //Get random item sqlite in listview
+    public void GetRandom(){
+        Cursor dataWords = database.GetData("SELECT * FROM Word WHERE Id IN (SELECT Id FROM Word ORDER BY RANDOM() LIMIT 3)");
+        arrayWord.clear();
+        while (dataWords.moveToNext()){
+            String vie = dataWords.getString(2);
+            String eng = dataWords.getString(1);
+            int id = dataWords.getInt(0);
+            arrayWord.add(new Word(id,eng,vie));
 
+        }
+        adapter.notifyDataSetChanged();
+    }
 
     private void GetDataWord(){
         //select Data( đọc dữ liệu)
@@ -141,9 +154,10 @@ public class LearnActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
+
     //select Data( đọc dữ liệu hình ảnh)
     private void GetDataImage(){
-        Cursor dataImage = database.GetData("SELECT * FROM Image ");
+        Cursor dataImage = database.GetData("SELECT * FROM Image");
         arrayImage.clear();
         while (dataImage.moveToNext()){
             String Gif = dataImage.getString(3);
@@ -172,10 +186,13 @@ public class LearnActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.menuAdd){
-
+            GetRandom();
+            lvhienthi.setAdapter(adapter);
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 
     //Dialog add từ mới
     private void DialogAdd(){
@@ -217,7 +234,7 @@ public class LearnActivity extends AppCompatActivity {
     }
 
 
-    //Dialog xoá bài tập thể hình
+    //Dialog xoá bài tập Homeout
 
     public void DialogDeleteExercise(final int idImage, final String title, byte[] imageTitle) {
         AlertDialog.Builder dialogdeleteExercise = new AlertDialog.Builder(this);

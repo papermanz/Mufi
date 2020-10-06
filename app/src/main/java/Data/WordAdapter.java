@@ -10,6 +10,7 @@ import com.minhhieu.mufi.LearnActivity;
 import com.minhhieu.mufi.R;
 
 import java.util.List;
+import java.util.Random;
 
 public class WordAdapter extends BaseAdapter {
 
@@ -25,7 +26,7 @@ public class WordAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return wordList.size(); // số dòng muốn listview hiển thị
+        return 3; // số dòng muốn listview hiển thị
     }
 
     @Override

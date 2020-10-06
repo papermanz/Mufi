@@ -8,11 +8,11 @@
     <TextView
         android:id="@+id/tvword1"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="60dp"
         android:fontFamily="sans-serif-condensed"
         android:gravity="center"
         android:text="@string/tutienganh"
-        android:textSize="15sp"
+        android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.047"
@@ -23,7 +23,7 @@
     <ImageView
         android:id="@+id/navbar"
         android:layout_width="27dp"
-        android:layout_height="20dp"
+        android:layout_height="40dp"
         android:layout_marginEnd="32dp"
         android:contentDescription="@string/todo"
         app:layout_constraintBottom_toBottomOf="@id/tvword1"

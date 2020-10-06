@@ -111,6 +111,11 @@
     <string name="save">Save</string>
     <string name="load">Load</string>
     <string name="add_word">Add Word</string>
+    <string name="Huy">Huỷ</string>
+    <string name="nhap_tu">Nhập từ mới</string>
+    <string name="nhap_nghia_cua_tu">Nhập nghĩa của từ</string>
+    <string name="them_tu">Thêm từ mới</string>
+    <string name="add">Thêm</string>
 
 
 </resources>

@@ -5,36 +5,41 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ExerciseActivity">
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+       >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <Button
-            android:id="@+id/save_exercise"
-            android:layout_width="230dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="8dp"
-            android:backgroundTint="@color/xanh"
-            android:text="@string/save"
-            android:textColor="@color/colorprimarytext"
-            app:layout_constraintEnd_toEndOf="@+id/id_entry"
-            app:layout_constraintHorizontal_bias="1.0"
-            android:layout_marginVertical="30dp"
-            app:layout_constraintStart_toStartOf="@+id/entry"
-            app:layout_constraintTop_toBottomOf="@+id/entry" />
+         android:id="@+id/save_exercise"
+         android:layout_width="230dp"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="30dp"
+         android:layout_marginTop="8dp"
+         android:backgroundTint="@color/xanh"
+         android:text="@string/save"
+         android:textColor="@color/colorprimarytext"
+         app:layout_constraintEnd_toEndOf="@+id/id_entry"
+         app:layout_constraintHorizontal_bias="1.0"
+         android:layout_marginVertical="30dp"
+         app:layout_constraintStart_toStartOf="@+id/entry"
+         app:layout_constraintTop_toBottomOf="@+id/entry" />
 
         <TextView
         android:id="@+id/title_exercise"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textSize="20sp"
+        android:textSize="30sp"
         android:textStyle="bold"
+        android:fontFamily="sans-serif-medium"
+        android:textAllCaps="true"
+        android:textColor="@color/colorAccent"
         android:layout_marginTop="32dp"
         app:layout_constraintBottom_toTopOf="@+id/imagegif"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +48,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <ImageView
+        <ImageView
         android:id="@+id/imagegif"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -67,7 +72,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imagegif"
         app:layout_constraintBottom_toTopOf="@+id/recommended"/>
 
-        <TextView
+    <TextView
             android:id="@+id/recommended"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -117,13 +122,8 @@
         app:layout_constraintStart_toStartOf="@+id/id_recommended"
         />
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
-
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
